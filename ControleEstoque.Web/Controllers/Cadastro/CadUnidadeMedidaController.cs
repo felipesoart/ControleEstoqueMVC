@@ -1,0 +1,109 @@
+﻿using ControleEstoque.Web.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace ControleEstoque.Web.Controllers.Cadastro
+{
+    public class CadUnidadeMedidaController : Controller
+    {
+        // GET: CadUnidadeMedida
+        private const int _quantMaxLinhasPorPagina = 5;
+
+        // GET: Cadastro
+        [Authorize]
+        public ActionResult Index()
+        {
+            ViewBag.ListaTamPag = new SelectList(new int[] { _quantMaxLinhasPorPagina, 10, 15, 20 }, _quantMaxLinhasPorPagina);
+            ViewBag.QuantMaxLinhasPorPagina = _quantMaxLinhasPorPagina;
+            ViewBag.PaginaAtual = 1;
+
+            var lista = UnidadeMedidaModel.RecuperarLista(ViewBag.PaginaAtual, _quantMaxLinhasPorPagina);
+            var quant = UnidadeMedidaModel.RecuperarQuantidade();
+
+            var difQuantPaginas = (quant % ViewBag.QuantMaxLinhasPorPagina) > 0 ? 1 : 0;
+            ViewBag.QuantPaginas = (quant / ViewBag.QuantMaxLinhasPorPagina) + difQuantPaginas;
+
+            return View(lista);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public JsonResult UnidadeMedidaPagina(int pagina, int tamPag)
+        {
+
+            var lista = UnidadeMedidaModel.RecuperarLista(pagina, tamPag);
+
+            return Json(lista);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken] //gera o token de altenticação contra CSRF (CROSS )
+        public JsonResult RecuperarUnidadeMedida(int id)
+        {
+            return Json(UnidadeMedidaModel.RecuperarPeloId(id));
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public JsonResult ExcluirUnidadeMedida(int id)
+        {
+            /* isso agora faz parte do metodo excluir do UnidadeMedidaModel
+            var ret = false;
+
+            var registroBD = _listaUnidadeMedida.Find(x => x.Id == id);
+            if (registroBD != null)
+            {
+                _listaUnidadeMedida.Remove(registroBD);
+                ret = true;
+            }*/
+
+            return Json(UnidadeMedidaModel.ExcluirPeloId(id));
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public JsonResult SalvarUnidadeMedida(UnidadeMedidaModel model)
+        {
+            var resultado = "OK";
+            var mensagens = new List<string>();
+            var idSalvo = string.Empty;
+
+            if (!ModelState.IsValid)
+            {
+                resultado = "AVISO";
+                mensagens = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList();
+
+            }
+            else
+            {
+                try
+                {
+                    var id = model.Salvar();
+                    if (id > 0)
+                    {
+                        idSalvo = id.ToString();
+                    }
+                    else
+                    {
+                        resultado = "ERRO";
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    resultado = "ERRO";
+                }
+
+            }
+            return Json(new { Resultado = resultado, Mensagens = mensagens, IdSalvo = idSalvo });
+
+        }
+    }
+}

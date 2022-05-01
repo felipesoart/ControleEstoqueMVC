@@ -1,0 +1,341 @@
+﻿
+#grid_cadastro > thead > tr th:nth-child(1) {
+    width: 100px;
+}
+
+#grid_cadastro > thead > tr th:nth-child(3) {
+    width: 100px;
+}
+
+#grid_cadastro > thead > tr th:nth-child(4) {
+    width: 100px;
+}
+
+#grid_cadastro > thead > tr th:nth-child(5) {
+    width: 250px;
+}
+
+#cadastro {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#cadastro_cabecalho {
+    border-bottom: 1px #dddddd solid;
+}
+
+#cadastro_conteudo {
+    margin-top: 20px;
+}
+
+#cabecalho_grid {
+    margin-bottom: 20px;
+}
+
+@font-face {
+    font-family: 'Poppins-titulo';
+    src: url('../../../images/imagesHotSite/fonte/Poppins-titulo.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Poppins-subTitulo';
+    src: url('../../../images/imagesHotSite/fonte/Poppins-subTitulo.ttf') format('truetype');
+}
+
+.font-externa-Poppins-titulo {
+    font-family: Poppins-titulo;
+}
+
+.font-externa-Poppins-subTitulo {
+    font-family: Poppins-subTitulo;
+}
+
+
+
+
+
+
+/*css - start - para carousel*/
+
+.slide {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 15px;
+    transition: all 0.4s;
+}
+
+.slides {
+    width: 100%;
+    display: flex;
+}
+
+.image img {
+    width: 1140px;
+    height: 600px;
+}
+
+#atual {
+    /*margin-left: -530px;*/
+    transition: all 2s;
+}
+
+.btn-carousel {
+    position: absolute;
+    color: white;    
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s;
+    font-size: 1.2em;
+    margin-top: -5px;
+}
+
+    .btn-carousel:hover {
+        transform: scale(1.5);
+    }
+
+#voltar {
+ 
+    top: 360px;
+    left: 10%;
+}
+
+#next {
+  
+    top: 360px;
+    right: 10%;
+}
+
+.balls {
+    position: absolute;
+    /*left: 46.5% ;*/
+    right: 47%;
+    left: 47%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    top: 630px;
+}
+
+    .balls div {
+        transition: all 0.5s;
+        border: 2px solid #fff;
+        padding: 3px;
+        margin-right: 15px;
+        cursor: pointer;
+        border-radius: 20px !important;
+    }
+
+        .balls div:hover {
+            background: #fff;
+        }
+
+.imgAtual {
+    transition: all 0.5s;
+    background: #fff;
+}
+
+.box-serv3 {
+    position: relative;
+    padding: 50px;
+    top: -350px;
+    width: 630px;
+    height: 350px;
+}
+
+/*css - end - para carousel*/
+.footer-fundo {
+    background: url(../../../images/imagesHotSite/footer-fundo.png) no-repeat;
+    background-size: 100% 100%;
+    min-height: 500px;
+}
+
+
+
+
+/*start - animação de movimento left -> centro*/
+
+.element-left-centro {
+    /*opacity: 0;*/
+    animation: fadeInMov 1s 0s both;
+}
+
+
+
+.animation-block {
+    position: relative;
+    overflow: hidden;
+}
+
+    .animation-block:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        transform: translateX(-100%);
+        animation: enLargeBlock 0.3s 0s both, revealBlock 0.3s 0s both;
+    }
+
+@keyframes fadeInMov {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes revealBlock {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes enLargeBlock {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/*end - animação de movimento*/
+
+/*start - animação de movimento centro <- right */
+
+.element-right-centro {
+    /*opacity: 0;*/
+    animation: fadeInMov 0.5s 0s both;
+}
+
+
+
+.animation-block2 {
+    position: relative;
+    overflow: hidden;
+}
+
+    .animation-block2:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 100%;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        transform: translateX(100%);
+        animation: enLargeBlock2 0.5s 0s both, revealBlock2 0.5s 0s both;
+    }
+
+
+@keyframes revealBlock2 {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes enLargeBlock2 {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+/*top -> bottom-lento*/
+
+.element-top-bottom-lento {
+    /*opacity: 0;*/
+    animation: fadeInMov 2s 0s both;
+}
+
+/*top -> bottom nomal*/
+.element-top-bottom {
+    /*opacity: 0;*/
+    animation: fadeInMov 0.5s 0s both;
+}
+
+
+.animation-block3 {
+    position: relative;
+    overflow: hidden;
+}
+
+    .animation-block3:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        transform: translateY(-100);
+        animation: enLargeBlock3 0.5s 0s both, revealBlock3 0.5s 0s both;
+    }
+
+
+@keyframes revealBlock3 {
+    from {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
+@keyframes enLargeBlock3 {
+    from {
+        height: 0%;
+    }
+
+    to {
+        height: 100%;
+    }
+}
+
+/*end - animação de movimento*/
+
+
+/*.mask_grop2 {
+    background: url(ImagenspasseiosSlid/mask_grop/sobre.png) no-repeat;   
+    background-size: 100% 100%;
+    position:absolute;
+    left: 0px;
+    width: 1530px;
+    height: 800px;
+}*/
+
+.footer-fundo {
+    background: url(ImagenspasseiosSlid/footer.png) no-repeat;
+    background-size: 100% 100%;
+ 
+    position: absolute;
+    top: 1200px;
+    left:0px;
+    right: 0px;
+    max-width: 100%;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+}
